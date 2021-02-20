@@ -53,6 +53,10 @@ public class Queue<T extends Comparable<T>> {
         return queue.removeFirst();
     }
 
+    public int size() {
+        return queue.size();
+    }
+
     public String toString() {
         return queue.toString();
     }

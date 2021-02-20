@@ -14,7 +14,7 @@ public class BST<T extends Comparable<T>>{
         this.root = null;
     }
 
-    private class BSTNode {
+    private class BSTNode implements Comparable<BSTNode> {
         T data;
         BSTNode left = null;
         BSTNode right = null;
@@ -28,6 +28,17 @@ public class BST<T extends Comparable<T>>{
             this.data = data;
             this.left = left;
             this.right = right;
+        }
+
+        @Override
+        public int compareTo(BSTNode o) {
+            if (this.data.compareTo(o.data) > 0) {
+                return 1;
+            } else if (this.data.compareTo(o.data) < 0) {
+                return -1;
+            } else {
+                return 0;
+            }
         }
     }
 
@@ -122,6 +133,30 @@ public class BST<T extends Comparable<T>>{
             postOrderRecursive(node.right);
             System.out.print(node.data + " ");
 
+        }
+    }
+
+    public void levelOrderTraversal() {
+        levelOrderHelper(root);
+    }
+
+    public void levelOrderHelper(BSTNode root) {
+        if (root == null) {
+            return;
+        }
+        Queue<BSTNode> nodesToVisit = new Queue<>();
+        nodesToVisit.offer(root);
+        while (nodesToVisit.size() != 0) {
+            // this code can be altered to do whatever needs to be done when visiting a node
+            // search, print, compare to, etc
+            BSTNode node = nodesToVisit.poll();
+            System.out.print(node.data + " ");
+            if (node.left != null) {
+                nodesToVisit.offer(node.left);
+            }
+            if (node.right != null) {
+                nodesToVisit.offer(node.right);
+            }
         }
     }
 
