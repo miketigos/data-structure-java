@@ -77,7 +77,7 @@ public class BST<T extends Comparable<T>>{
         return root;
     }
 
-    public T getMinValue(BSTNode node) {
+    private T getMinValue(BSTNode node) {
         
         T minValue = node.data;
 
